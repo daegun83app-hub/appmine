@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AppMine | 작지만 강력한 앱을 만듭니다</title>
+  <meta name="description" content="AppMine은 작지만 강력한 앱을 만드는 팀입니다. PlantMate, AILotto, PricePick을 소개합니다." />
+  <link rel="canonical" href="https://appmine.kr/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f3;
+      --surface: #ffffff;
+      --ink: #161a17;
+      --muted: #4d5652;
+      --accent: #1e4a3d;
+      --accent-soft: #e8f0ed;
+      --accent-hover: #163a30;
+      --line: #dfe2de;
+      --shadow: 0 4px 20px rgba(22, 26, 23, 0.06);
+      --shadow-hover: 0 12px 32px rgba(22, 26, 23, 0.1);
+      --radius: 14px;
+      --radius-lg: 20px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Outfit", "SUIT", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30, 74, 61, 0.06), transparent),
+        linear-gradient(180deg, #f8faf8 0%, var(--bg) 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 20px 56px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 4px 0 32px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    nav a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .hero {
+      padding: 8px 0 36px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    h1 {
+      margin: 20px 0 14px;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .lead {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 520px;
+    }
+    .card-grid {
+      display: grid;
+      gap: 14px;
+      margin: 32px 0 40px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(30, 74, 61, 0.15);
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      width: fit-content;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+    }
+    .company {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .company h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .company p {
+      margin: 0 0 14px;
+      line-height: 1.75;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .company p:last-child {
+      margin-bottom: 0;
+    }
+    footer {
+      margin-top: 44px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 900px) {
+      .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+      .lead { font-size: 17px; }
+      nav { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">AppMine</div>
+      <nav>
+        <a href="/plantmate/">PlantMate</a>
+        <a href="/ailotto/">AILotto</a>
+        <a href="/pricepick/">PricePick</a>
+        <a href="/boxing_timer/">Boxing Timer</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <span class="tag">AppMine Studio</span>
+      <h1>작지만 강력한 앱을 만듭니다</h1>
+      <p class="lead">AppMine은 생활 속 작은 불편을 빠르게 해결하는 모바일 앱을 만듭니다. AI 분석, 데이터 기반 추천, 가격 흐름 파악까지 쉽고 직관적으로 제공하는 것이 우리의 강점입니다.</p>
+    </section>
+
+    <section class="card-grid">
+      <article class="card">
+        <h3>PlantMate</h3>
+        <p>사진 한 장으로 식물 상태를 분석하고 관리 팁을 알려주는 AI 식물 도우미.</p>
+        <a class="btn" href="/plantmate/">자세히 보기</a>
+      </article>
+      <article class="card">
+        <h3>AILotto</h3>
+        <p>로또 데이터를 분석해 통계와 패턴을 정리하고 번호 선택을 돕는 분석 도구.</p>
+        <a class="btn" href="/ailotto/">자세히 보기</a>
+      </article>
+      <article class="card">
+        <h3>PricePick</h3>
+        <p>가격 흐름을 한눈에 보여주고 합리적인 구매 타이밍을 추천하는 쇼핑 파트너.</p>
+        <a class="btn" href="/pricepick/">자세히 보기</a>
+      </article>
+      <article class="card">
+        <h3>Boxing Timer</h3>
+        <p>라운드, 휴식, 알림, 기록까지 한 번에 관리하는 복싱 타이머.</p>
+        <a class="btn" href="/boxing_timer/">자세히 보기</a>
+      </article>
+    </section>
+
+    <section class="company">
+      <h2>AppMine 소개</h2>
+      <p>우리는 작지만 민첩한 팀으로, 사용자에게 바로 도움이 되는 제품을 빠르게 선보입니다. 필요한 기능은 단순하게, 중요한 정보는 정확하게 전달하는 것에 집중합니다.</p>
+      <p>AppMine은 앱 기획부터 디자인, 개발, 운영까지 전 과정을 직접 담당합니다. 사용자 피드백을 바탕으로 개선을 지속하며, 누구나 쉽게 쓸 수 있는 서비스를 목표로 합니다.</p>
+      <p>작은 앱 하나가 큰 변화를 만든다는 믿음으로, 일상 속 문제를 해결하는 제품을 계속 만들어 나가겠습니다.</p>
+    </section>
+
+    <footer>© AppMine</footer>
+  </div>
+</body>
+</html>

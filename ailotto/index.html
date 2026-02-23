@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 로또 추첨기 | 오늘의 번호를 더 전략적으로</title>
+    <meta
+      name="description"
+      content="랜덤, 확률 분석, 슬롯머신 방식까지. AI 로또 추첨기로 다양한 방식의 번호 추천과 저장 기능을 한 번에 경험하세요."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;800&family=Urbanist:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f8fc;
+        --ink: #13203a;
+        --ink-soft: #455271;
+        --brand-1: #0d3b66;
+        --brand-2: #f4a300;
+        --brand-3: #1b7fbc;
+        --card: #ffffff;
+        --line: #d9e1ee;
+        --ok: #13a17b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Urbanist", "Noto Sans KR", sans-serif;
+        color: var(--ink);
+        background: radial-gradient(circle at 10% -10%, #dce8ff 0, transparent 45%),
+          radial-gradient(circle at 90% -10%, #ffe9bd 0, transparent 40%), var(--bg);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(14px);
+        background: rgba(247, 248, 252, 0.75);
+        border-bottom: 1px solid rgba(19, 32, 58, 0.08);
+      }
+
+      .topbar-inner {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+      }
+
+      .top-cta {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn.primary {
+        background: linear-gradient(135deg, var(--brand-1), #2b5fa1);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(13, 59, 102, 0.25);
+      }
+
+      .btn.secondary {
+        background: #fff;
+        border-color: var(--line);
+      }
+
+      .hero {
+        padding: 84px 0 62px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 34px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: #e8f2ff;
+        color: var(--brand-1);
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Black Han Sans", sans-serif;
+        font-size: clamp(40px, 5.2vw, 74px);
+        line-height: 1.03;
+        letter-spacing: -0.02em;
+      }
+
+      .hero p {
+        margin: 20px 0 0;
+        color: var(--ink-soft);
+        font-size: clamp(16px, 2vw, 20px);
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-visual {
+        position: relative;
+        border-radius: 28px;
+        background: linear-gradient(140deg, #0d3b66, #1f5d94 40%, #257cbf);
+        min-height: 420px;
+        overflow: hidden;
+        box-shadow: 0 22px 50px rgba(13, 59, 102, 0.3);
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        right: -120px;
+        top: -160px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 64%);
+      }
+
+      .ball {
+        position: absolute;
+        border-radius: 50%;
+        width: 76px;
+        height: 76px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: #111;
+        animation: float 3.4s ease-in-out infinite;
+      }
+
+      .ball.b1 {
+        left: 36px;
+        top: 58px;
+        background: #ffd54f;
+      }
+      .ball.b2 {
+        left: 128px;
+        top: 162px;
+        background: #b3e5fc;
+        animation-delay: 0.4s;
+      }
+      .ball.b3 {
+        left: 64px;
+        top: 282px;
+        background: #dcedc8;
+        animation-delay: 1.1s;
+      }
+      .ball.b4 {
+        right: 72px;
+        top: 122px;
+        background: #ffcdd2;
+        animation-delay: 0.7s;
+      }
+      .ball.b5 {
+        right: 44px;
+        top: 262px;
+        background: #d1c4e9;
+        animation-delay: 1.5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-9px);
+        }
+      }
+
+      .hero-panel {
+        position: absolute;
+        left: 50%;
+        bottom: 22px;
+        transform: translateX(-50%);
+        width: min(90%, 370px);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.93);
+        padding: 18px;
+      }
+
+      .hero-panel strong {
+        font-size: 18px;
+      }
+
+      section {
+        padding: 34px 0;
+      }
+
+      .section-title {
+        margin: 0 0 18px;
+        font-size: clamp(28px, 3vw, 44px);
+        letter-spacing: -0.02em;
+      }
+
+      .section-sub {
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.65;
+      }
+
+      .feature-grid {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .feature {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      .feature h3 {
+        margin: 0;
+      }
+
+      .feature p {
+        margin: 10px 0 0;
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+
+      .preview {
+        margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .preview img {
+        width: 100%;
+        border-radius: 16px;
+        height: 220px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+      }
+
+      .steps {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .step {
+        background: linear-gradient(180deg, #ffffff, #f2f6ff);
+        border: 1px solid #cfd9ea;
+        border-radius: 18px;
+        padding: 20px;
+      }
+
+      .num {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--brand-2);
+        color: #222;
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+      }
+
+      .cta-section {
+        padding: 80px 0 92px;
+      }
+
+      .cta-box {
+        background: linear-gradient(130deg, #0d3b66, #1d5a92 50%, #2c7db9);
+        color: #fff;
+        border-radius: 30px;
+        padding: 42px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-box::after {
+        content: "";
+        position: absolute;
+        width: 430px;
+        height: 430px;
+        border-radius: 50%;
+        left: -140px;
+        bottom: -260px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 65%);
+      }
+
+      .cta-box h2 {
+        margin: 0;
+        font-size: clamp(30px, 4vw, 50px);
+        line-height: 1.1;
+      }
+
+      .cta-box p {
+        margin: 16px 0 0;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .cta-actions {
+        margin-top: 26px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cta-actions .btn.primary {
+        background: #fff;
+        color: var(--brand-1);
+      }
+
+      .cta-actions .btn.secondary {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      footer {
+        padding: 24px 0 34px;
+        text-align: center;
+        color: #5f6c87;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 420ms ease, transform 420ms ease;
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: 360px;
+        }
+
+        .feature-grid,
+        .steps {
+          grid-template-columns: 1fr;
+        }
+
+        .preview {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .topbar-inner {
+          height: auto;
+          padding: 14px 0;
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .hero {
+          padding-top: 42px;
+        }
+
+        .hero-visual {
+          min-height: 320px;
+        }
+
+        .ball {
+          width: 62px;
+          height: 62px;
+          font-size: 14px;
+        }
+
+        .preview {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">
+          <img src="assets/images/app_logo.png" alt="AI 로또 추첨기 로고" />
+          <span>AI 로또 추첨기</span>
+        </div>
+        <div class="top-cta">
+          <a class="btn secondary" href="#features">기능 보기</a>
+          <a class="btn primary" href="#download">지금 시작</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="reveal">
+            <span class="eyebrow">Android Only</span>
+            <h1>오늘의 번호를<br />더 전략적으로</h1>
+            <p>
+              단순 랜덤부터 확률 기반 추천, 슬롯머신 스타일 추첨까지.<br />
+              하나의 앱에서 다양한 추첨 방식과 번호 저장 기능을 제공합니다.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#download">Google Play에서 받기</a>
+              <a class="btn secondary" href="#how">사용 방법</a>
+            </div>
+          </div>
+          <div class="hero-visual reveal">
+            <div class="ball b1">07</div>
+            <div class="ball b2">14</div>
+            <div class="ball b3">22</div>
+            <div class="ball b4">34</div>
+            <div class="ball b5">41</div>
+            <div class="hero-panel">
+              <strong>오늘의 추천 조합 생성 완료</strong>
+              <p style="margin: 8px 0 0; color: #4e5b77">랜덤 / 확률 / 스핀 모드 중 원하는 방식으로 다시 생성할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features">
+        <div class="container reveal">
+          <h2 class="section-title">한 앱에서 끝내는 로또 루틴</h2>
+          <p class="section-sub">다양한 추첨 모드와 번호 저장 기능을 조합해, 본인만의 추첨 흐름을 만들 수 있습니다.</p>
+          <div class="feature-grid">
+            <article class="feature">
+              <h3>랜덤 추첨</h3>
+              <p>빠르게 조합이 필요할 때 즉시 번호를 생성합니다.</p>
+            </article>
+            <article class="feature">
+              <h3>확률 분석 추첨</h3>
+              <p>최근 회차 데이터를 기반으로 조합 생성에 참고할 수 있습니다.</p>
+            </article>
+            <article class="feature">
+              <h3>스핀(슬롯) 추첨</h3>
+              <p>게임처럼 즐기면서 번호를 생성하는 엔터테인먼트 모드입니다.</p>
+            </article>
+            <article class="feature">
+              <h3>번호 저장 / 관리</h3>
+              <p>마음에 드는 조합을 저장하고 필요할 때 바로 다시 확인할 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div class="container preview reveal" style="margin-top: 26px">
+          <img src="assets/images/lucky_bg.png" alt="앱 화면 예시 1" />
+          <img src="assets/images/graph_image.png" alt="앱 화면 예시 2" />
+          <img src="assets/images/lucky_bg2.png" alt="앱 화면 예시 3" />
+        </div>
+      </section>
+
+      <section id="how">
+        <div class="container reveal">
+          <h2 class="section-title">3단계로 바로 시작</h2>
+          <div class="steps">
+            <article class="step">
+              <div class="num">1</div>
+              <h3>모드 선택</h3>
+              <p>랜덤, 확률, 스핀 중 오늘 사용할 추첨 방식을 고릅니다.</p>
+            </article>
+            <article class="step">
+              <div class="num">2</div>
+              <h3>번호 생성</h3>
+              <p>탭 한 번으로 추천 번호 조합을 만들고 비교합니다.</p>
+            </article>
+            <article class="step">
+              <div class="num">3</div>
+              <h3>조합 저장</h3>
+              <p>원하는 번호를 저장해 다음 회차 준비를 이어갑니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" id="download">
+        <div class="container">
+          <div class="cta-box reveal">
+            <h2>AI 로또 추첨기,<br />Android에서 바로 시작하세요</h2>
+            <p>매일 번호를 고민하는 시간을 줄이고, 더 빠르게 조합을 만들어보세요.</p>
+            <div class="cta-actions">
+              <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.wonyapps.lotto_generator">Google Play 다운로드</a>
+              <a class="btn secondary" href="https://play.google.com/store/apps/details?id=com.wonyapps.lotto_generator">스토어에서 자세히 보기</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 AI 로또 추첨기. All rights reserved.</div>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      reveals.forEach((item) => io.observe(item));
+    </script>
+  </body>
+</html>
