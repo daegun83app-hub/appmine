@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개인정보 처리방침 / Chính sách quyền riêng tư — AI Jackpot 6/55</title>
+  <style>
+    :root {
+      --bg: #0f0a12;
+      --surface: #1a1220;
+      --border: rgba(255, 210, 90, 0.35);
+      --text: #f5f0e8;
+      --muted: #b8aea0;
+      --accent: #ffd45a;
+      --accent-dim: rgba(255, 212, 90, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans KR", "Noto Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    header {
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-name {
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .effective {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .lang-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-dim);
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .content { display: none; }
+    .content.active { display: block; }
+
+    h2 {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin: 28px 0 10px;
+      padding-top: 4px;
+    }
+
+    h2:first-child { margin-top: 0; }
+
+    p { margin-bottom: 12px; }
+
+    ul, ol {
+      margin: 0 0 14px 20px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    .box strong { color: var(--accent); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 12px 0 16px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 10, 18, 0.88);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .topbar-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+
+    .brand:hover { text-decoration: none; opacity: 0.9; }
+
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .topbar-nav a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-soft, #fff2b8);
+      white-space: nowrap;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        AI Jackpot 6/55
+      </a>
+      <div class="topbar-right">
+        <nav class="topbar-nav" aria-label="Site">
+          <a href="index.html" data-i18n-nav-home="vi">Trang chủ</a>
+          <a href="index.html" data-i18n-nav-home="ko" style="display:none">홈</a>
+        </nav>
+        <div class="lang-switch" role="tablist" aria-label="Language">
+          <button class="lang-btn active" data-lang="vi" role="tab" aria-selected="true">Tiếng Việt</button>
+          <button class="lang-btn" data-lang="ko" role="tab" aria-selected="false">한국어</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <header>
+      <div class="app-name">AI Jackpot 6/55</div>
+      <h1 id="page-title">Chính sách quyền riêng tư</h1>
+      <p class="effective" id="effective-date">Ngày hiệu lực: 22 tháng 5 năm 2026</p>
+    </header>
+
+    <!-- ── 한국어 ── -->
+    <article class="content" id="content-ko" lang="ko">
+      <p>
+        ADMINE(이하 &ldquo;회사&rdquo;)는 모바일 애플리케이션 <strong>AI Jackpot 6/55</strong>
+        (이하 &ldquo;앱&rdquo;)을 제공하며, 이용자의 개인정보를 소중히 여깁니다.
+        본 개인정보 처리방침은 앱 이용 시 수집·이용·보관·제공되는 정보와 이용자의 권리에 대해 설명합니다.
+      </p>
+
+      <h2>1. 수집하는 정보</h2>
+      <p>앱은 서비스 제공을 위해 아래 정보를 처리할 수 있습니다.</p>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">가. 자동으로 수집되는 정보</h3>
+      <ul>
+        <li>기기 정보(운영체제, 기기 모델, 앱 버전, 화면 해상도 등)</li>
+        <li>광고 식별자(Android 광고 ID, iOS IDFA 등) 및 광고 관련 데이터</li>
+        <li>앱 사용 기록(화면 조회, 버튼 탭, 광고 노출·클릭 등 분석 이벤트)</li>
+        <li>푸시 알림 토큰(FCM 디바이스 토큰)</li>
+        <li>네트워크 연결 상태 및 IP 주소(서비스·광고 제공 시)</li>
+      </ul>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">나. 기기에 저장되는 정보</h3>
+      <ul>
+        <li>이용자가 저장한 로또 번호 및 관련 메모</li>
+        <li>알림 권한 안내 표시 여부 등 앱 설정</li>
+        <li>이벤트·프로모션(광고 제거 등) 적용 상태</li>
+        <li>앱 리뷰 요청 관련 카운트 등 서비스 운영에 필요한 로컬 기록</li>
+      </ul>
+      <p>위 로컬 데이터는 이용자 기기 내부(SharedPreferences 등)에 저장되며, 회사 서버로 자동 전송되지 않습니다.</p>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">다. 이용자가 직접 입력하는 정보</h3>
+      <p>앱은 회원가입을 요구하지 않으며, 이름·전화번호·이메일 등 계정 정보를 직접 수집하지 않습니다. 다만 문의 시 이용자가 제공하는 연락처는 문의 처리 목적으로만 사용됩니다.</p>
+
+      <h2>2. 정보의 이용 목적</h2>
+      <ol>
+        <li>로또 번호 생성·저장·시뮬레이션 등 핵심 기능 제공</li>
+        <li>맞춤형·비맞춤형 광고 표시 및 광고 성과 측정</li>
+        <li>서비스 이용 통계 분석 및 품질 개선</li>
+        <li>푸시 알림 발송(이벤트·당첨 안내 등, 이용자 동의 시)</li>
+        <li>인앱 결제·구독 처리(해당 기능 이용 시)</li>
+        <li>앱 안정성 확보 및 오류 대응</li>
+      </ol>
+
+      <h2>3. 제3자 제공 및 처리 위탁</h2>
+      <p>회사는 아래 제3자 서비스를 통해 정보가 처리될 수 있으며, 각 서비스의 정책이 적용됩니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>제공받는 자</th>
+            <th>이용 목적</th>
+            <th>제공 항목</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google (AdMob)</td>
+            <td>광고 게재·측정</td>
+            <td>광고 ID, 기기 정보, 사용 데이터</td>
+          </tr>
+          <tr>
+            <td>Google (Firebase Analytics)</td>
+            <td>앱 사용 분석</td>
+            <td>기기·앱 정보, 이용 이벤트</td>
+          </tr>
+          <tr>
+            <td>Google (Firebase Cloud Messaging)</td>
+            <td>푸시 알림</td>
+            <td>FCM 토큰, 기기 정보</td>
+          </tr>
+          <tr>
+            <td>Google Play / Apple App Store</td>
+            <td>인앱 결제</td>
+            <td>결제·구독 관련 정보(플랫폼 정책에 따름)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>관련 정책:</p>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a></li>
+        <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Google AdMob 정책</a></li>
+      </ul>
+
+      <h2>4. 앱 권한</h2>
+      <ul>
+        <li><strong>인터넷</strong> — 광고, 분석, 알림, 데이터 조회</li>
+        <li><strong>알림(POST_NOTIFICATIONS)</strong> — 푸시 알림 수신(동의 시)</li>
+        <li><strong>광고 ID(AD_ID)</strong> — 맞춤형 광고 및 광고 측정</li>
+        <li><strong>인앱 결제(BILLING)</strong> — 유료 기능·구독 결제</li>
+        <li><strong>센서(가속도계 등)</strong> — 로또 추첨 애니메이션 등 엔터테인먼트 기능</li>
+      </ul>
+      <p>권한은 해당 기능 이용 시에만 사용되며, OS 설정에서 알림 등 일부 권한을 변경·철회할 수 있습니다.</p>
+
+      <h2>5. 보관 기간</h2>
+      <ul>
+        <li>기기 내 저장 데이터: 앱 삭제 또는 이용자가 직접 삭제할 때까지</li>
+        <li>분석·광고 데이터: 각 제3자 서비스의 보관 정책에 따름</li>
+        <li>문의 기록: 처리 완료 후 관련 법령에 따른 기간 보관 후 파기</li>
+      </ul>
+
+      <h2>6. 이용자의 권리</h2>
+      <p>이용자는 아래 권리를 행사할 수 있습니다.</p>
+      <ul>
+        <li>개인정보 열람·정정·삭제 요청</li>
+        <li>맞춤형 광고 제한(기기 OS 설정 또는 Google 광고 설정)</li>
+        <li>푸시 알림 수신 거부(기기 알림 설정)</li>
+        <li>앱 삭제를 통한 로컬 데이터 삭제</li>
+      </ul>
+
+      <h2>7. 아동의 개인정보</h2>
+      <p>앱은 만 14세(또는 해당 국가의 아동 연령 기준) 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+
+      <h2>8. 국외 이전</h2>
+      <p>Google 등 제3자 서비스 이용 과정에서 정보가 대한민국 외 국가(미국 등)로 이전·처리될 수 있습니다.</p>
+
+      <h2>9. 안전성 확보 조치</h2>
+      <p>회사는 개인정보 보호를 위해 접근 통제, 암호화 통신(HTTPS), 최소 수집 원칙 등 합리적인 보호 조치를 적용합니다.</p>
+
+      <h2>10. 방침 변경</h2>
+      <p>법령·서비스 변경에 따라 본 방침이 수정될 수 있으며, 변경 시 앱 또는 본 페이지에 공지합니다. 변경 후에도 앱을 계속 이용하면 변경된 방침에 동의한 것으로 간주될 수 있습니다.</p>
+
+      <h2>11. 문의</h2>
+      <div class="box">
+        <strong>개인정보 보호 책임자</strong><br>
+        성명: 황대건<br>
+        직급: 대표<br>
+        연락처:
+        <a href="tel:+821062733192">010-6273-3192</a>,
+        <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a>
+      </div>
+      <p>개인정보 관련 문의·불만·피해 구제는 위 연락처로 접수해 주시기 바랍니다.</p>
+
+      <div class="box">
+        본 앱은 Vietlott와 무관한 참고용·엔터테인먼트 서비스입니다.
+        제공되는 번호와 해석은 당첨을 보장하지 않습니다.
+      </div>
+    </article>
+
+    <!-- ── Tiếng Việt ── -->
+    <article class="content active" id="content-vi" lang="vi">
+      <p>
+        ADMINE (sau đây gọi là &ldquo;Chúng tôi&rdquo;) cung cấp ứng dụng di động
+        <strong>AI Jackpot 6/55</strong> (sau đây gọi là &ldquo;Ứng dụng&rdquo;)
+        và tôn trọng quyền riêng tư của người dùng.
+        Chính sách này giải thích thông tin được thu thập, sử dụng, lưu trữ khi bạn sử dụng Ứng dụng
+        cùng các quyền của bạn.
+      </p>
+
+      <h2>1. Thông tin chúng tôi thu thập</h2>
+      <p>Ứng dụng có thể xử lý các thông tin sau để cung cấp dịch vụ.</p>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">a. Thông tin thu thập tự động</h3>
+      <ul>
+        <li>Thông tin thiết bị (hệ điều hành, model, phiên bản ứng dụng, độ phân giải màn hình, v.v.)</li>
+        <li>Mã định danh quảng cáo (Android Advertising ID, iOS IDFA, v.v.) và dữ liệu liên quan đến quảng cáo</li>
+        <li>Lịch sử sử dụng ứng dụng (xem màn hình, nhấn nút, hiển thị/nhấp quảng cáo, v.v.)</li>
+        <li>Token thông báo đẩy (FCM device token)</li>
+        <li>Trạng thái kết nối mạng và địa chỉ IP (khi cung cấp dịch vụ/quảng cáo)</li>
+      </ul>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">b. Thông tin lưu trên thiết bị</h3>
+      <ul>
+        <li>Số xổ số và ghi chú do người dùng lưu</li>
+        <li>Cài đặt ứng dụng (ví dụ: đã hiển thị hướng dẫn quyền thông báo hay chưa)</li>
+        <li>Trạng thái sự kiện/khuyến mãi (ví dụ: tắt quảng cáo)</li>
+        <li>Bản ghi cục bộ phục vụ vận hành (ví dụ: số lần nhắc đánh giá ứng dụng)</li>
+      </ul>
+      <p>Dữ liệu cục bộ này được lưu trong thiết bị (SharedPreferences, v.v.) và không tự động gửi lên máy chủ của chúng tôi.</p>
+
+      <h3 style="font-size:0.95rem;margin:16px 0 8px;color:var(--text);">c. Thông tin do người dùng nhập</h3>
+      <p>Ứng dụng không yêu cầu đăng ký tài khoản và không thu thập trực tiếp tên, số điện thoại, email, v.v. Khi bạn liên hệ hỗ trợ, thông tin liên lạc bạn cung cấp chỉ được dùng để xử lý yêu cầu.</p>
+
+      <h2>2. Mục đích sử dụng</h2>
+      <ol>
+        <li>Cung cấp chức năng tạo/lưu/mô phỏng số xổ số</li>
+        <li>Hiển thị quảng cáo cá nhân hóa/không cá nhân hóa và đo lường hiệu quả quảng cáo</li>
+        <li>Phân tích thống kê sử dụng và cải thiện chất lượng dịch vụ</li>
+        <li>Gửi thông báo đẩy (sự kiện, kết quả, v.v. — khi có sự đồng ý)</li>
+        <li>Xử lý thanh toán trong ứng dụng/đăng ký (khi sử dụng tính năng tương ứng)</li>
+        <li>Đảm bảo ổn định ứng dụng và xử lý lỗi</li>
+      </ol>
+
+      <h2>3. Cung cấp cho bên thứ ba &amp; xử lý ủy thác</h2>
+      <p>Thông tin có thể được xử lý thông qua các dịch vụ bên thứ ba sau, tuân theo chính sách của từng bên.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Bên nhận</th>
+            <th>Mục đích</th>
+            <th>Thông tin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google (AdMob)</td>
+            <td>Hiển thị &amp; đo quảng cáo</td>
+            <td>ID quảng cáo, thông tin thiết bị, dữ liệu sử dụng</td>
+          </tr>
+          <tr>
+            <td>Google (Firebase Analytics)</td>
+            <td>Phân tích sử dụng</td>
+            <td>Thông tin thiết bị/ứng dụng, sự kiện sử dụng</td>
+          </tr>
+          <tr>
+            <td>Google (Firebase Cloud Messaging)</td>
+            <td>Thông báo đẩy</td>
+            <td>Token FCM, thông tin thiết bị</td>
+          </tr>
+          <tr>
+            <td>Google Play / Apple App Store</td>
+            <td>Thanh toán trong ứng dụng</td>
+            <td>Thông tin thanh toán/đăng ký (theo chính sách nền tảng)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Chính sách liên quan:</p>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Chính sách quyền riêng tư của Google</a></li>
+        <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Chính sách Google AdMob</a></li>
+      </ul>
+
+      <h2>4. Quyền ứng dụng</h2>
+      <ul>
+        <li><strong>Internet</strong> — quảng cáo, phân tích, thông báo, truy vấn dữ liệu</li>
+        <li><strong>Thông báo (POST_NOTIFICATIONS)</strong> — nhận thông báo đẩy (khi đồng ý)</li>
+        <li><strong>ID quảng cáo (AD_ID)</strong> — quảng cáo cá nhân hóa và đo lường</li>
+        <li><strong>Thanh toán trong ứng dụng (BILLING)</strong> — tính năng trả phí/đăng ký</li>
+        <li><strong>Cảm biến (gia tốc kế, v.v.)</strong> — hiệu ứng quay số/giải trí</li>
+      </ul>
+      <p>Quyền chỉ được dùng khi cần cho chức năng tương ứng. Bạn có thể thay đổi/từ chối một số quyền (ví dụ thông báo) trong cài đặt hệ điều hành.</p>
+
+      <h2>5. Thời gian lưu trữ</h2>
+      <ul>
+        <li>Dữ liệu trên thiết bị: cho đến khi bạn xóa ứng dụng hoặc xóa dữ liệu</li>
+        <li>Dữ liệu phân tích/quảng cáo: theo chính sách của từng bên thứ ba</li>
+        <li>Hồ sơ liên hệ: lưu theo thời hạn pháp luật sau khi xử lý xong, rồi hủy</li>
+      </ul>
+
+      <h2>6. Quyền của người dùng</h2>
+      <p>Bạn có thể thực hiện các quyền sau:</p>
+      <ul>
+        <li>Yêu cầu xem, sửa, xóa thông tin cá nhân</li>
+        <li>Hạn chế quảng cáo cá nhân hóa (cài đặt OS hoặc cài đặt quảng cáo Google)</li>
+        <li>Từ chối thông báo đẩy (cài đặt thông báo thiết bị)</li>
+        <li>Xóa dữ liệu cục bộ bằng cách gỡ ứng dụng</li>
+      </ul>
+
+      <h2>7. Quyền riêng tư trẻ em</h2>
+      <p>Ứng dụng không nhắm đến trẻ em dưới 14 tuổi (hoặc độ tuổi trẻ em theo quy định tại quốc gia tương ứng) và không cố ý thu thập thông tin cá nhân của trẻ em.</p>
+
+      <h2>8. Chuyển dữ liệu ra nước ngoài</h2>
+      <p>Khi sử dụng dịch vụ bên thứ ba như Google, thông tin có thể được chuyển và xử lý tại quốc gia khác (ví dụ Hoa Kỳ).</p>
+
+      <h2>9. Biện pháp bảo mật</h2>
+      <p>Chúng tôi áp dụng các biện pháp hợp lý như kiểm soát truy cập, truyền tải mã hóa (HTTPS) và nguyên tắc thu thập tối thiểu để bảo vệ thông tin.</p>
+
+      <h2>10. Thay đổi chính sách</h2>
+      <p>Chính sách có thể được cập nhật theo pháp luật hoặc thay đổi dịch vụ. Khi có thay đổi, chúng tôi sẽ thông báo trên ứng dụng hoặc trang này. Việc tiếp tục sử dụng ứng dụng sau khi cập nhật có thể được coi là đồng ý với chính sách mới.</p>
+
+      <h2>11. Liên hệ</h2>
+      <div class="box">
+        <strong>Người phụ trách bảo vệ dữ liệu</strong><br>
+        Họ tên: 황대건 (Hwang Dae-geun)<br>
+        Chức vụ: Giám đốc đại diện<br>
+        Liên hệ:
+        <a href="tel:+821062733192">010-6273-3192</a>,
+        <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a>
+      </div>
+      <p>Vui lòng liên hệ địa chỉ trên để gửi yêu cầu, khiếu nại hoặc giải quyết vấn đề liên quan đến quyền riêng tư.</p>
+
+      <div class="box">
+        Ứng dụng này là dịch vụ tham khảo/giải trí, không liên kết với Vietlott.
+        Các con số và diễn giải được cung cấp không đảm bảo trúng thưởng.
+      </div>
+    </article>
+
+    <footer>
+      <span id="footer-text">© 2026 ADMINE. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="index.html" data-i18n-footer-home="vi">Trang chủ</a>
+        <a href="index.html" data-i18n-footer-home="ko" style="display:none">홈</a>
+        <a href="privacy-policy.html" data-i18n-footer-privacy="vi">Chính sách quyền riêng tư</a>
+        <a href="privacy-policy.html" data-i18n-footer-privacy="ko" style="display:none">개인정보 처리방침</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'site-lang';
+      var titles = { ko: '개인정보 처리방침', vi: 'Chính sách quyền riêng tư' };
+      var dates = {
+        ko: '시행일: 2026년 5월 22일',
+        vi: 'Ngày hiệu lực: 22 tháng 5 năm 2026'
+      };
+
+      var buttons = document.querySelectorAll('.lang-btn');
+      var contents = {
+        ko: document.getElementById('content-ko'),
+        vi: document.getElementById('content-vi')
+      };
+      var pageTitle = document.getElementById('page-title');
+      var effectiveDate = document.getElementById('effective-date');
+      var i18nLinks = document.querySelectorAll('[data-i18n-footer-privacy], [data-i18n-footer-home], [data-i18n-nav-home]');
+
+      function withLang(href, lang) {
+        var url = new URL(href, window.location.href);
+        url.searchParams.set('lang', lang);
+        return url.pathname + url.search;
+      }
+
+      function setLang(lang) {
+        if (!contents[lang]) lang = 'vi';
+
+        buttons.forEach(function (btn) {
+          var active = btn.dataset.lang === lang;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        Object.keys(contents).forEach(function (key) {
+          contents[key].classList.toggle('active', key === lang);
+        });
+
+        i18nLinks.forEach(function (link) {
+          var key = link.dataset.i18nFooterPrivacy
+            || link.dataset.i18nFooterHome
+            || link.dataset.i18nNavHome;
+          link.style.display = key === lang ? '' : 'none';
+          if (key === lang) {
+            link.setAttribute('href', withLang(link.getAttribute('href').split('?')[0], lang));
+          }
+        });
+
+        var brandLink = document.querySelector('.brand');
+        if (brandLink) {
+          brandLink.setAttribute('href', withLang('index.html', lang));
+        }
+
+        document.documentElement.lang = lang;
+        pageTitle.textContent = titles[lang];
+        effectiveDate.textContent = dates[lang];
+        document.title = titles[lang] + ' — AI Jackpot 6/55';
+
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setLang(btn.dataset.lang);
+        });
+      });
+
+      var params = new URLSearchParams(window.location.search);
+      var queryLang = params.get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+      if (queryLang === 'vi' || queryLang === 'ko') {
+        setLang(queryLang);
+      } else if (saved === 'vi' || saved === 'ko') {
+        setLang(saved);
+      } else {
+        setLang('vi');
+      }
+    })();
+  </script>
+</body>
+</html>
