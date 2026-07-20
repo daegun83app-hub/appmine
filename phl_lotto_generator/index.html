@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LOTTO PICK is a reference app for Philippine lotto games with AI number suggestions, dream number search, random draws, simulations, and saved picks.">
+  <title>LOTTO PICK | AI Number Picker for Philippine Lotto</title>
+  <style>
+    :root {
+      --blue: #073b8e;
+      --blue-deep: #041b4d;
+      --red: #c7162b;
+      --yellow: #ffd84d;
+      --yellow-soft: #fff4bd;
+      --ink: #102033;
+      --muted: #5f6c7d;
+      --bg: #f4f8ff;
+      --surface: #ffffff;
+      --surface-blue: #eaf2ff;
+      --border: rgba(7, 59, 142, 0.14);
+      --shadow: 0 20px 44px rgba(4, 27, 77, 0.16);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans", "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 60% 42% at 8% 0%, rgba(255, 216, 77, 0.34), transparent),
+        radial-gradient(ellipse 55% 45% at 98% 8%, rgba(199, 22, 43, 0.16), transparent),
+        var(--bg);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(244, 248, 255, 0.86);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      letter-spacing: 0.01em;
+      color: var(--blue-deep);
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(7, 59, 142, 0.18);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-nav a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .lang-btn:hover,
+    .lang-btn.active {
+      color: var(--blue);
+      border-color: rgba(7, 59, 142, 0.35);
+      background: var(--surface-blue);
+    }
+
+    .content { display: none; }
+    .content.active { display: block; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(136deg, var(--blue-deep) 0%, var(--blue) 48%, #0b6cc8 100%);
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 216, 77, 0.35);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 58px 20px 70px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.96fr);
+      gap: 42px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255, 216, 77, 0.14);
+      border: 1px solid rgba(255, 216, 77, 0.42);
+      color: var(--yellow-soft);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5.2vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .hero-lead {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      max-width: 590px;
+      margin-bottom: 28px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .flag-badge {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      width: 118px;
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.24));
+      z-index: 1;
+    }
+
+    .robot {
+      position: absolute;
+      left: 0;
+      bottom: 6px;
+      width: 174px;
+      filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.22));
+      z-index: 2;
+    }
+
+    .phone {
+      position: relative;
+      z-index: 3;
+      width: min(100%, 310px);
+      aspect-ratio: 9 / 18;
+      border-radius: 32px;
+      padding: 12px;
+      background: linear-gradient(145deg, #ffffff, #ccd8ef);
+      box-shadow: var(--shadow);
+    }
+
+    .phone-screen {
+      height: 100%;
+      border-radius: 23px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(7, 59, 142, 0.94), rgba(4, 27, 77, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      color: #fff;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .screen-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+    }
+
+    .screen-top img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+    }
+
+    .jackpot-card {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 16px;
+    }
+
+    .jackpot-card small {
+      display: block;
+      color: var(--yellow-soft);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .jackpot-card strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.15;
+      color: var(--yellow);
+    }
+
+    .number-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .ball {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: var(--blue-deep);
+      font-weight: 850;
+      box-shadow: inset 0 -5px 10px rgba(7, 59, 142, 0.14);
+    }
+
+    .screen-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .screen-pill {
+      border-radius: 12px;
+      padding: 10px 8px;
+      background: rgba(255, 216, 77, 0.16);
+      color: var(--yellow-soft);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 66px 20px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.65rem, 3.2vw, 2.25rem);
+      line-height: 1.2;
+      color: var(--blue-deep);
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .features,
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .feature,
+    .game {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 10px 28px rgba(4, 27, 77, 0.08);
+      min-height: 176px;
+    }
+
+    .feature-mark,
+    .game-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--surface-blue);
+      color: var(--blue);
+      font-weight: 850;
+      margin-bottom: 14px;
+    }
+
+    .feature h3,
+    .game h3 {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .feature p,
+    .game p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .highlight-band {
+      background: linear-gradient(180deg, #ffffff 0%, #eaf2ff 100%);
+      border-block: 1px solid var(--border);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .step-num {
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 13px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--red), #f04b55);
+      color: #fff;
+      font-weight: 850;
+    }
+
+    .step h3 {
+      color: var(--blue-deep);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .notice {
+      background: var(--blue-deep);
+      color: #fff;
+    }
+
+    .notice .section {
+      padding-block: 48px;
+    }
+
+    .disclaimer {
+      border: 1px solid rgba(255, 216, 77, 0.38);
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+
+    .disclaimer strong {
+      color: var(--yellow);
+    }
+
+    .contact-box {
+      margin-top: 24px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+    }
+
+    .contact-box a { color: var(--yellow); }
+
+    footer {
+      padding: 28px 20px 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 820px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding-top: 38px;
+        text-align: center;
+      }
+
+      .hero-lead { margin-inline: auto; }
+      .hero-tags { justify-content: center; }
+      .hero-art {
+        min-height: 390px;
+        order: -1;
+      }
+      .robot { width: 138px; left: 10px; }
+      .flag-badge { width: 92px; right: 18px; }
+      .phone { width: min(86vw, 276px); }
+    }
+
+    @media (max-width: 520px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .topbar-right { justify-content: flex-start; }
+      .section { padding-block: 52px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/images/app_icon.png" alt="" width="38" height="38">
+        LOTTO PICK
+      </a>
+      <div class="topbar-right">
+        <nav class="topbar-nav" aria-label="Site">
+          <a href="privacy-policy.html" data-i18n-nav-privacy="en">Privacy Policy</a>
+          <a href="privacy-policy.html" data-i18n-nav-privacy="ko" style="display:none">개인정보 처리방침</a>
+        </nav>
+        <div class="lang-switch" role="tablist" aria-label="Language">
+          <button class="lang-btn active" data-lang="en" role="tab" aria-selected="true">English</button>
+          <button class="lang-btn" data-lang="ko" role="tab" aria-selected="false">한국어</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content active" id="content-en" lang="en">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="badge">PHILIPPINE LOTTO · AI PICKER</span>
+          <h1>Smart picks for<br><em>Philippine lotto</em></h1>
+          <p class="hero-lead">
+            LOTTO PICK helps you explore Ultra Lotto 6/58, Grand Lotto 6/55,
+            Super Lotto 6/49, Mega Lotto 6/45, and Lotto 6/42 with AI-assisted
+            number ideas, dream keywords, random draws, simulations, and saved picks.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">AI number suggestions</span>
+            <span class="tag">Dream number search</span>
+            <span class="tag">Random draw tools</span>
+            <span class="tag">Result simulation</span>
+            <span class="tag">Saved picks</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="LOTTO PICK app preview">
+          <img class="flag-badge" src="assets/images/home/ph_flag_badge.png" alt="" width="118" height="120">
+          <img class="robot" src="assets/images/home/ai_robot.png" alt="" width="174" height="146">
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="screen-top">
+                <img src="assets/images/app_icon.png" alt="">
+                <span>LOTTO PICK</span>
+              </div>
+              <div class="jackpot-card">
+                <small>Today's AI Pick</small>
+                <strong>Ultra Lotto 6/58</strong>
+              </div>
+              <div class="number-row">
+                <span class="ball">07</span>
+                <span class="ball">14</span>
+                <span class="ball">22</span>
+                <span class="ball">31</span>
+                <span class="ball">45</span>
+                <span class="ball">58</span>
+              </div>
+              <div class="screen-actions">
+                <span class="screen-pill">Dreams</span>
+                <span class="screen-pill">Simulate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Built for quick, playful number exploration</h2>
+        <p>Use multiple ways to create, compare, and save lotto number sets for reference and entertainment.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-mark">AI</div>
+          <h3>AI-assisted number ideas</h3>
+          <p>Generate reference picks using past draw data when available, or create fresh random sets by game.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">DR</div>
+          <h3>Dream number search</h3>
+          <p>Search dream keywords and receive suggested numbers with short interpretations.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">RN</div>
+          <h3>Random draw modes</h3>
+          <p>Try classic random generation, probability-style drawing, slot machine effects, and animated picks.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">RS</div>
+          <h3>Results and simulation</h3>
+          <p>Check recent draw results, run simulations, and compare your saved sets against actual draws.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">SV</div>
+          <h3>Saved numbers</h3>
+          <p>Keep favorite AI picks, dream picks, and self-selected numbers on your device for later review.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">NT</div>
+          <h3>Optional notifications</h3>
+          <p>Receive app updates or result-related notices only when you allow notifications.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="highlight-band">
+      <div class="section">
+        <div class="section-head">
+          <h2>Supported games</h2>
+          <p>Switch between major Philippine lotto game formats and generate six-number sets for each range.</p>
+        </div>
+        <div class="games">
+          <article class="game">
+            <div class="game-mark">58</div>
+            <h3>Ultra Lotto 6/58</h3>
+            <p>Six numbers from 1 to 58.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">55</div>
+            <h3>Grand Lotto 6/55</h3>
+            <p>Six numbers from 1 to 55.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">49</div>
+            <h3>Super Lotto 6/49</h3>
+            <p>Six numbers from 1 to 49.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">45</div>
+            <h3>Mega Lotto 6/45</h3>
+            <p>Six numbers from 1 to 45.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">42</div>
+            <h3>Lotto 6/42</h3>
+            <p>Six numbers from 1 to 42.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>How to use it</h2>
+        <p>Start with a game, create a set, then save and compare your picks.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Select a game</h3>
+          <p>Choose the Philippine lotto game you want to explore.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Generate numbers</h3>
+          <p>Use AI, dream keywords, random tools, or simulations.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Save and check</h3>
+          <p>Store favorite sets and compare them with draw results.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice">
+      <div class="section">
+        <div class="disclaimer">
+          LOTTO PICK is a reference and entertainment app. It is <strong>not affiliated with,
+          endorsed by, or operated by PCSO or any official lottery operator</strong>.
+          AI suggestions, dream interpretations, random numbers, and simulations are provided
+          for reference only and <strong>do not guarantee winnings</strong>. Please play responsibly.
+        </div>
+        <div class="contact-box">
+          Developed by <strong>ADMINE</strong><br>
+          Contact: <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="content" id="content-ko" lang="ko">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="badge">필리핀 로또 · AI 번호 도구</span>
+          <h1>필리핀 로또를 위한<br><em>스마트 번호 추천</em></h1>
+          <p class="hero-lead">
+            LOTTO PICK은 Ultra Lotto 6/58, Grand Lotto 6/55, Super Lotto 6/49,
+            Mega Lotto 6/45, Lotto 6/42를 대상으로 AI 번호 추천, 꿈 번호 검색,
+            랜덤 추첨, 시뮬레이션, 번호 저장 기능을 제공하는 참고용 앱입니다.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">AI 번호 추천</span>
+            <span class="tag">꿈 번호 검색</span>
+            <span class="tag">랜덤 추첨</span>
+            <span class="tag">결과 시뮬레이션</span>
+            <span class="tag">번호 저장</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="LOTTO PICK 앱 미리보기">
+          <img class="flag-badge" src="assets/images/home/ph_flag_badge.png" alt="" width="118" height="120">
+          <img class="robot" src="assets/images/home/ai_robot.png" alt="" width="174" height="146">
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="screen-top">
+                <img src="assets/images/app_icon.png" alt="">
+                <span>LOTTO PICK</span>
+              </div>
+              <div class="jackpot-card">
+                <small>오늘의 AI 추천</small>
+                <strong>Ultra Lotto 6/58</strong>
+              </div>
+              <div class="number-row">
+                <span class="ball">07</span>
+                <span class="ball">14</span>
+                <span class="ball">22</span>
+                <span class="ball">31</span>
+                <span class="ball">45</span>
+                <span class="ball">58</span>
+              </div>
+              <div class="screen-actions">
+                <span class="screen-pill">꿈번호</span>
+                <span class="screen-pill">시뮬레이션</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>빠르고 재미있는 번호 탐색 도구</h2>
+        <p>여러 방식으로 번호 조합을 만들고, 비교하고, 저장할 수 있습니다.</p>
+      </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-mark">AI</div>
+          <h3>AI 기반 번호 아이디어</h3>
+          <p>과거 당첨 데이터가 있을 때는 이를 참고하고, 없을 때는 게임별 범위에 맞춰 번호를 생성합니다.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">DR</div>
+          <h3>꿈 번호 검색</h3>
+          <p>꿈 키워드를 검색하고 짧은 해석과 함께 참고 번호를 확인할 수 있습니다.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">RN</div>
+          <h3>랜덤 추첨 모드</h3>
+          <p>기본 랜덤 생성, 확률형 추첨, 슬롯머신 효과, 애니메이션 추첨을 제공합니다.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">RS</div>
+          <h3>결과와 시뮬레이션</h3>
+          <p>최근 당첨 결과를 확인하고 저장한 번호와 실제 결과를 비교할 수 있습니다.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">SV</div>
+          <h3>번호 저장</h3>
+          <p>AI 추천, 꿈 번호, 직접 선택한 번호를 기기에 저장해 다시 확인할 수 있습니다.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-mark">NT</div>
+          <h3>선택형 알림</h3>
+          <p>사용자가 알림을 허용한 경우에만 앱 안내 또는 결과 관련 알림을 받을 수 있습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="highlight-band">
+      <div class="section">
+        <div class="section-head">
+          <h2>지원 게임</h2>
+          <p>필리핀 주요 로또 게임 형식에 맞춰 여섯 개의 번호를 생성합니다.</p>
+        </div>
+        <div class="games">
+          <article class="game">
+            <div class="game-mark">58</div>
+            <h3>Ultra Lotto 6/58</h3>
+            <p>1부터 58까지의 숫자 중 여섯 개.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">55</div>
+            <h3>Grand Lotto 6/55</h3>
+            <p>1부터 55까지의 숫자 중 여섯 개.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">49</div>
+            <h3>Super Lotto 6/49</h3>
+            <p>1부터 49까지의 숫자 중 여섯 개.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">45</div>
+            <h3>Mega Lotto 6/45</h3>
+            <p>1부터 45까지의 숫자 중 여섯 개.</p>
+          </article>
+          <article class="game">
+            <div class="game-mark">42</div>
+            <h3>Lotto 6/42</h3>
+            <p>1부터 42까지의 숫자 중 여섯 개.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>이용 방법</h2>
+        <p>게임을 고르고, 번호를 만들고, 저장한 뒤 결과와 비교해 보세요.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>게임 선택</h3>
+          <p>탐색할 필리핀 로또 게임을 선택합니다.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>번호 생성</h3>
+          <p>AI, 꿈 키워드, 랜덤 도구, 시뮬레이션 중 원하는 방식을 사용합니다.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>저장 및 확인</h3>
+          <p>마음에 드는 조합을 저장하고 당첨 결과와 비교합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice">
+      <div class="section">
+        <div class="disclaimer">
+          LOTTO PICK은 참고용·엔터테인먼트 앱이며 <strong>PCSO 또는 공식 복권 운영기관과
+          제휴, 승인, 운영 관계가 없습니다</strong>. AI 추천, 꿈 해석, 랜덤 번호,
+          시뮬레이션은 참고 목적으로만 제공되며 <strong>당첨을 보장하지 않습니다</strong>.
+          책임감 있게 이용해 주세요.
+        </div>
+        <div class="contact-box">
+          개발: <strong>ADMINE</strong><br>
+          문의: <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div>© 2026 ADMINE. All rights reserved.</div>
+    <div class="links">
+      <a href="index.html" data-i18n-footer-home="en">Home</a>
+      <a href="index.html" data-i18n-footer-home="ko" style="display:none">홈</a>
+      <a href="privacy-policy.html" data-i18n-footer-privacy="en">Privacy Policy</a>
+      <a href="privacy-policy.html" data-i18n-footer-privacy="ko" style="display:none">개인정보 처리방침</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'lotto-pick-site-lang';
+      var titles = {
+        en: 'LOTTO PICK | AI Number Picker for Philippine Lotto',
+        ko: 'LOTTO PICK | 필리핀 로또 AI 번호 추천'
+      };
+
+      var buttons = document.querySelectorAll('.lang-btn');
+      var contents = {
+        en: document.getElementById('content-en'),
+        ko: document.getElementById('content-ko')
+      };
+
+      var i18nLinks = document.querySelectorAll('[data-i18n-footer-privacy], [data-i18n-footer-home], [data-i18n-nav-privacy]');
+
+      function withLang(href, lang) {
+        var url = new URL(href, window.location.href);
+        url.searchParams.set('lang', lang);
+        return url.pathname + url.search;
+      }
+
+      function setLang(lang) {
+        if (!contents[lang]) lang = 'en';
+
+        buttons.forEach(function (btn) {
+          var active = btn.dataset.lang === lang;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        Object.keys(contents).forEach(function (key) {
+          contents[key].classList.toggle('active', key === lang);
+        });
+
+        i18nLinks.forEach(function (link) {
+          var key = link.dataset.i18nFooterPrivacy
+            || link.dataset.i18nFooterHome
+            || link.dataset.i18nNavPrivacy;
+          link.style.display = key === lang ? '' : 'none';
+          if (key === lang) {
+            link.setAttribute('href', withLang(link.getAttribute('href').split('?')[0], lang));
+          }
+        });
+
+        var brandLink = document.querySelector('.brand');
+        if (brandLink) {
+          brandLink.setAttribute('href', withLang('index.html', lang));
+        }
+
+        document.documentElement.lang = lang;
+        document.title = titles[lang];
+
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setLang(btn.dataset.lang);
+        });
+      });
+
+      var params = new URLSearchParams(window.location.search);
+      var queryLang = params.get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
+      if (queryLang === 'en' || queryLang === 'ko') {
+        setLang(queryLang);
+      } else if (saved === 'en' || saved === 'ko') {
+        setLang(saved);
+      } else {
+        setLang('en');
+      }
+    })();
+  </script>
+</body>
+</html>

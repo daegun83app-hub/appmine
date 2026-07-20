@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — LOTTO PICK</title>
+  <style>
+    :root {
+      --blue: #073b8e;
+      --blue-deep: #041b4d;
+      --red: #c7162b;
+      --yellow: #ffd84d;
+      --ink: #102033;
+      --muted: #5f6c7d;
+      --bg: #f4f8ff;
+      --surface: #ffffff;
+      --border: rgba(7, 59, 142, 0.16);
+      --accent-soft: rgba(7, 59, 142, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans", "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.72;
+      font-size: 15px;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(244, 248, 255, 0.9);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .topbar-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      color: var(--blue-deep);
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-nav a {
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+    }
+
+    .lang-btn {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      color: var(--blue);
+      border-color: rgba(7, 59, 142, 0.36);
+      background: var(--accent-soft);
+    }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 20px 50px;
+    }
+
+    .page-head {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 28px rgba(4, 27, 77, 0.08);
+    }
+
+    .app-name {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .effective {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .content { display: none; }
+    .content.active { display: block; }
+
+    article {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 12px 28px rgba(4, 27, 77, 0.08);
+    }
+
+    h2 {
+      margin: 30px 0 10px;
+      color: var(--blue-deep);
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      margin: 16px 0 8px;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    p { margin-bottom: 12px; }
+
+    ul,
+    ol {
+      margin: 0 0 14px 21px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 12px 0 16px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--accent-soft);
+      color: var(--blue-deep);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .box {
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+
+    .box strong { color: var(--blue-deep); }
+
+    footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 560px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .topbar-right { justify-content: flex-start; }
+      article,
+      .page-head { padding: 20px; }
+      table { font-size: 12.5px; }
+      th,
+      td { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/images/app_icon.png" alt="" width="34" height="34">
+        LOTTO PICK
+      </a>
+      <div class="topbar-right">
+        <nav class="topbar-nav" aria-label="Site">
+          <a href="index.html" data-i18n-nav-home="en">Home</a>
+          <a href="index.html" data-i18n-nav-home="ko" style="display:none">홈</a>
+        </nav>
+        <div class="lang-switch" role="tablist" aria-label="Language">
+          <button class="lang-btn active" data-lang="en" role="tab" aria-selected="true">English</button>
+          <button class="lang-btn" data-lang="ko" role="tab" aria-selected="false">한국어</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <header class="page-head">
+      <div class="app-name">LOTTO PICK</div>
+      <h1 id="page-title">Privacy Policy</h1>
+      <p class="effective" id="effective-date">Effective date: July 20, 2026</p>
+    </header>
+
+    <article class="content active" id="content-en" lang="en">
+      <p>
+        ADMINE ("we", "us", or "our") provides the mobile application
+        <strong>LOTTO PICK</strong> (the "App"). This Privacy Policy explains what
+        information may be collected, used, stored, shared, and protected when you use the App.
+      </p>
+
+      <h2>1. Information We Process</h2>
+      <p>The App may process the following information to provide and improve the service.</p>
+
+      <h3>A. Information collected automatically</h3>
+      <ul>
+        <li>Device and app information, such as operating system, device model, app version, language, screen size, and crash or diagnostic signals</li>
+        <li>Advertising identifiers and advertising-related data used by Google AdMob where permitted by applicable law, platform settings, and Google policies</li>
+        <li>App usage events, such as screen views, button taps, ad impressions, ad clicks, and feature usage events through Firebase Analytics</li>
+        <li>Firebase Cloud Messaging token and notification delivery data when notifications are enabled</li>
+        <li>Network information, such as IP address, when connecting to app services, advertising services, analytics, or notification services</li>
+      </ul>
+
+      <h3>B. Information stored on your device</h3>
+      <ul>
+        <li>Lotto number sets, labels, and related notes saved by you</li>
+        <li>App settings, including language, notification prompts, promotional access status, and review prompt counters</li>
+        <li>Temporary app data needed for number generation, simulations, and local app operation</li>
+      </ul>
+      <p>This local information is stored on your device, for example through SharedPreferences, and is not automatically uploaded to our server.</p>
+
+      <h3>C. Information you provide directly</h3>
+      <p>The App does not require account registration and does not directly collect your name, phone number, or email address inside the App. If you contact us for support, we use the contact details and message you provide only to respond to your request.</p>
+
+      <h2>2. How We Use Information</h2>
+      <ol>
+        <li>To provide number generation, saved numbers, dream number search, simulations, and result-related features</li>
+        <li>To display and measure ads, including non-personalized or personalized ads where permitted</li>
+        <li>To analyze usage statistics and improve App quality, performance, and usability</li>
+        <li>To send push notifications only when you allow notifications</li>
+        <li>To maintain security, prevent abuse, diagnose errors, and operate app services</li>
+        <li>To respond to support inquiries</li>
+      </ol>
+
+      <h2>3. Third-Party Services</h2>
+      <p>The App uses third-party services that may process information according to their own privacy policies.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Service Provider</th>
+            <th>Purpose</th>
+            <th>Information Processed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google AdMob</td>
+            <td>Advertising and ad measurement</td>
+            <td>Advertising ID, device information, IP address, ad events, usage data</td>
+          </tr>
+          <tr>
+            <td>Firebase Analytics</td>
+            <td>Usage analytics and service improvement</td>
+            <td>Device/app information, screen views, feature events, diagnostics</td>
+          </tr>
+          <tr>
+            <td>Firebase Cloud Messaging</td>
+            <td>Push notifications</td>
+            <td>FCM token, device information, notification delivery data</td>
+          </tr>
+          <tr>
+            <td>App service API</td>
+            <td>Draw results, dream keyword data, and app content</td>
+            <td>Request data, IP address, device/network information needed to serve the request</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Related policies:</p>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+        <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Google AdMob Privacy and Security</a></li>
+        <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use Google services</a></li>
+      </ul>
+
+      <h2>4. App Permissions</h2>
+      <ul>
+        <li><strong>Internet</strong> — to load draw data, dream keyword data, ads, analytics, and notifications</li>
+        <li><strong>Notifications</strong> — to send push notifications when you opt in</li>
+        <li><strong>Advertising ID</strong> — to support ads and ad measurement, where available and permitted</li>
+        <li><strong>Sensors</strong> — to support entertainment effects, such as lotto draw animations</li>
+      </ul>
+      <p>You may change or revoke some permissions, such as notifications, from your device settings.</p>
+
+      <h2>5. Retention</h2>
+      <ul>
+        <li>Local saved data remains on your device until you delete it, clear App data, or uninstall the App.</li>
+        <li>Analytics, advertising, and notification data are retained according to the policies of the relevant third-party services.</li>
+        <li>Support inquiry records are retained only as long as necessary to respond to the inquiry and meet legal or operational requirements.</li>
+      </ul>
+
+      <h2>6. Your Rights and Choices</h2>
+      <p>Depending on your location and applicable law, you may have rights to access, correct, delete, object to, or restrict certain processing of your personal information. You may also:</p>
+      <ul>
+        <li>Limit ad personalization through your device settings or Google ad settings</li>
+        <li>Disable push notifications through your device notification settings</li>
+        <li>Delete locally saved data by clearing App data or uninstalling the App</li>
+        <li>Contact us to request privacy-related support</li>
+      </ul>
+
+      <h2>7. Children and Responsible Use</h2>
+      <p>The App is not directed to children. Because the App relates to lottery-style entertainment, it is intended for users who are legally permitted to access lottery-related content in their location. We do not knowingly collect personal information from children.</p>
+
+      <h2>8. International Processing</h2>
+      <p>Information may be processed in countries outside your country of residence, including Korea, the United States, or other countries where our service providers operate. We use reasonable measures to protect information in connection with such processing.</p>
+
+      <h2>9. Security</h2>
+      <p>We use reasonable administrative, technical, and organizational safeguards, including limited access, secure communications where available, and data minimization. No method of transmission or storage is completely secure.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy when the App, law, or our data practices change. We will post the updated version in the App or on this page. Continued use of the App after an update may be treated as acceptance of the updated policy where permitted by law.</p>
+
+      <h2>11. Contact</h2>
+      <div class="box">
+        <strong>Privacy Contact</strong><br>
+        Company: ADMINE<br>
+        Representative: Hwang Dae-geun<br>
+        Email: <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a><br>
+        Phone: <a href="tel:+821062733192">+82-10-6273-3192</a>
+      </div>
+      <p>Please contact us for privacy requests, complaints, or questions about this policy.</p>
+
+      <div class="box">
+        LOTTO PICK is a reference and entertainment app. It is not affiliated with,
+        endorsed by, or operated by PCSO or any official lottery operator. The App
+        does not guarantee lottery winnings.
+      </div>
+    </article>
+
+    <article class="content" id="content-ko" lang="ko">
+      <p>
+        ADMINE(이하 "회사")는 모바일 애플리케이션 <strong>LOTTO PICK</strong>
+        (이하 "앱")을 제공하며, 이용자의 개인정보를 중요하게 생각합니다.
+        본 개인정보 처리방침은 앱 이용 시 처리될 수 있는 정보, 이용 목적, 보관,
+        제3자 서비스, 이용자의 권리에 대해 설명합니다.
+      </p>
+
+      <h2>1. 처리하는 정보</h2>
+      <p>앱은 서비스 제공 및 개선을 위해 아래 정보를 처리할 수 있습니다.</p>
+
+      <h3>가. 자동으로 수집되는 정보</h3>
+      <ul>
+        <li>운영체제, 기기 모델, 앱 버전, 언어, 화면 크기, 오류·진단 신호 등 기기 및 앱 정보</li>
+        <li>관련 법령, 플랫폼 설정, Google 정책상 허용되는 범위의 광고 식별자 및 광고 관련 데이터</li>
+        <li>Firebase Analytics를 통한 화면 조회, 버튼 탭, 광고 노출·클릭, 기능 사용 이벤트 등 앱 사용 기록</li>
+        <li>알림을 허용한 경우 Firebase Cloud Messaging 토큰 및 알림 전달 관련 데이터</li>
+        <li>앱 서비스, 광고, 분석, 알림 서비스 연결 시 필요한 IP 주소 등 네트워크 정보</li>
+      </ul>
+
+      <h3>나. 기기에 저장되는 정보</h3>
+      <ul>
+        <li>이용자가 저장한 로또 번호 조합, 라벨, 관련 메모</li>
+        <li>언어, 알림 안내 표시 여부, 프로모션 혜택 상태, 리뷰 요청 카운트 등 앱 설정</li>
+        <li>번호 생성, 시뮬레이션, 앱 동작에 필요한 임시 데이터</li>
+      </ul>
+      <p>위 로컬 정보는 SharedPreferences 등을 통해 이용자 기기에 저장되며 회사 서버로 자동 업로드되지 않습니다.</p>
+
+      <h3>다. 이용자가 직접 제공하는 정보</h3>
+      <p>앱은 회원가입을 요구하지 않으며 앱 내부에서 이름, 전화번호, 이메일 주소를 직접 수집하지 않습니다. 다만 문의 시 이용자가 제공한 연락처와 문의 내용은 답변 및 지원 목적으로만 이용합니다.</p>
+
+      <h2>2. 정보 이용 목적</h2>
+      <ol>
+        <li>번호 생성, 저장 번호, 꿈 번호 검색, 시뮬레이션, 결과 관련 기능 제공</li>
+        <li>관련 정책상 허용되는 범위에서 광고 표시 및 광고 성과 측정</li>
+        <li>서비스 이용 통계 분석, 품질 개선, 성능 개선</li>
+        <li>이용자가 허용한 경우 푸시 알림 발송</li>
+        <li>보안 유지, 오류 진단, 부정 이용 방지, 앱 서비스 운영</li>
+        <li>고객 문의 응대</li>
+      </ol>
+
+      <h2>3. 제3자 서비스</h2>
+      <p>앱은 아래 제3자 서비스를 이용하며, 각 서비스의 개인정보 처리방침에 따라 정보가 처리될 수 있습니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>서비스 제공자</th>
+            <th>이용 목적</th>
+            <th>처리 정보</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google AdMob</td>
+            <td>광고 게재 및 광고 성과 측정</td>
+            <td>광고 ID, 기기 정보, IP 주소, 광고 이벤트, 이용 데이터</td>
+          </tr>
+          <tr>
+            <td>Firebase Analytics</td>
+            <td>이용 분석 및 서비스 개선</td>
+            <td>기기·앱 정보, 화면 조회, 기능 이벤트, 진단 정보</td>
+          </tr>
+          <tr>
+            <td>Firebase Cloud Messaging</td>
+            <td>푸시 알림</td>
+            <td>FCM 토큰, 기기 정보, 알림 전달 데이터</td>
+          </tr>
+          <tr>
+            <td>앱 서비스 API</td>
+            <td>추첨 결과, 꿈 키워드 데이터, 앱 콘텐츠 제공</td>
+            <td>요청 데이터, IP 주소, 요청 처리에 필요한 기기·네트워크 정보</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>관련 정책:</p>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a></li>
+        <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Google AdMob 개인정보 및 보안</a></li>
+        <li><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google 서비스 사용 앱·사이트의 정보 처리 안내</a></li>
+      </ul>
+
+      <h2>4. 앱 권한</h2>
+      <ul>
+        <li><strong>인터넷</strong> — 추첨 데이터, 꿈 키워드 데이터, 광고, 분석, 알림 제공</li>
+        <li><strong>알림</strong> — 이용자가 동의한 경우 푸시 알림 발송</li>
+        <li><strong>광고 ID</strong> — 이용 가능한 경우 광고 및 광고 성과 측정 지원</li>
+        <li><strong>센서</strong> — 로또 추첨 애니메이션 등 엔터테인먼트 효과 제공</li>
+      </ul>
+      <p>알림 등 일부 권한은 기기 설정에서 변경하거나 철회할 수 있습니다.</p>
+
+      <h2>5. 보관 기간</h2>
+      <ul>
+        <li>기기 내 저장 데이터: 이용자가 삭제하거나 앱 데이터를 지우거나 앱을 삭제할 때까지</li>
+        <li>분석, 광고, 알림 데이터: 각 제3자 서비스의 보관 정책에 따름</li>
+        <li>문의 기록: 문의 처리 및 법적·운영상 필요한 기간 동안 보관 후 파기</li>
+      </ul>
+
+      <h2>6. 이용자의 권리와 선택</h2>
+      <p>이용자는 거주 지역 및 관련 법령에 따라 개인정보 열람, 정정, 삭제, 처리 제한 또는 반대 등을 요청할 수 있습니다. 또한 아래 선택을 할 수 있습니다.</p>
+      <ul>
+        <li>기기 설정 또는 Google 광고 설정을 통한 맞춤형 광고 제한</li>
+        <li>기기 알림 설정을 통한 푸시 알림 거부</li>
+        <li>앱 데이터 삭제 또는 앱 삭제를 통한 로컬 저장 데이터 삭제</li>
+        <li>개인정보 관련 문의 및 요청</li>
+      </ul>
+
+      <h2>7. 아동 및 책임 있는 이용</h2>
+      <p>앱은 아동을 대상으로 하지 않습니다. 앱은 복권 관련 엔터테인먼트 정보를 다루므로 이용자가 거주 지역에서 복권 관련 콘텐츠를 이용할 수 있는 법적 연령 및 요건을 충족하는 경우에만 이용해야 합니다. 회사는 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+
+      <h2>8. 국외 처리</h2>
+      <p>정보는 회사 또는 제3자 서비스 제공자가 운영하는 국가(대한민국, 미국 등)에서 처리될 수 있습니다. 회사는 이러한 처리와 관련하여 합리적인 보호 조치를 적용합니다.</p>
+
+      <h2>9. 안전성 확보 조치</h2>
+      <p>회사는 접근 제한, 가능한 경우 암호화 통신, 최소 수집 원칙 등 합리적인 관리적·기술적·조직적 보호 조치를 적용합니다. 다만 어떠한 전송 또는 저장 방식도 완전한 보안을 보장하지는 않습니다.</p>
+
+      <h2>10. 방침 변경</h2>
+      <p>법령, 서비스, 개인정보 처리 방식이 변경되는 경우 본 방침이 업데이트될 수 있습니다. 변경된 방침은 앱 또는 본 페이지에 게시합니다. 변경 후 앱을 계속 이용하는 경우 관련 법령이 허용하는 범위에서 변경된 방침에 동의한 것으로 간주될 수 있습니다.</p>
+
+      <h2>11. 문의</h2>
+      <div class="box">
+        <strong>개인정보 문의처</strong><br>
+        회사: ADMINE<br>
+        대표: 황대건<br>
+        이메일: <a href="mailto:daegun@admine.co.kr">daegun@admine.co.kr</a><br>
+        전화: <a href="tel:+821062733192">010-6273-3192</a>
+      </div>
+      <p>개인정보 관련 요청, 불만, 문의는 위 연락처로 접수해 주시기 바랍니다.</p>
+
+      <div class="box">
+        LOTTO PICK은 참고용·엔터테인먼트 앱이며 PCSO 또는 공식 복권 운영기관과
+        제휴, 승인, 운영 관계가 없습니다. 앱은 당첨을 보장하지 않습니다.
+      </div>
+    </article>
+
+    <footer>
+      <span id="footer-text">© 2026 ADMINE. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="index.html" data-i18n-footer-home="en">Home</a>
+        <a href="index.html" data-i18n-footer-home="ko" style="display:none">홈</a>
+        <a href="privacy-policy.html" data-i18n-footer-privacy="en">Privacy Policy</a>
+        <a href="privacy-policy.html" data-i18n-footer-privacy="ko" style="display:none">개인정보 처리방침</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'lotto-pick-site-lang';
+      var titles = { en: 'Privacy Policy', ko: '개인정보 처리방침' };
+      var dates = {
+        en: 'Effective date: July 20, 2026',
+        ko: '시행일: 2026년 7월 20일'
+      };
+
+      var buttons = document.querySelectorAll('.lang-btn');
+      var contents = {
+        en: document.getElementById('content-en'),
+        ko: document.getElementById('content-ko')
+      };
+      var pageTitle = document.getElementById('page-title');
+      var effectiveDate = document.getElementById('effective-date');
+      var i18nLinks = document.querySelectorAll('[data-i18n-footer-privacy], [data-i18n-footer-home], [data-i18n-nav-home]');
+
+      function withLang(href, lang) {
+        var url = new URL(href, window.location.href);
+        url.searchParams.set('lang', lang);
+        return url.pathname + url.search;
+      }
+
+      function setLang(lang) {
+        if (!contents[lang]) lang = 'en';
+
+        buttons.forEach(function (btn) {
+          var active = btn.dataset.lang === lang;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        Object.keys(contents).forEach(function (key) {
+          contents[key].classList.toggle('active', key === lang);
+        });
+
+        i18nLinks.forEach(function (link) {
+          var key = link.dataset.i18nFooterPrivacy
+            || link.dataset.i18nFooterHome
+            || link.dataset.i18nNavHome;
+          link.style.display = key === lang ? '' : 'none';
+          if (key === lang) {
+            link.setAttribute('href', withLang(link.getAttribute('href').split('?')[0], lang));
+          }
+        });
+
+        var brandLink = document.querySelector('.brand');
+        if (brandLink) {
+          brandLink.setAttribute('href', withLang('index.html', lang));
+        }
+
+        document.documentElement.lang = lang;
+        pageTitle.textContent = titles[lang];
+        effectiveDate.textContent = dates[lang];
+        document.title = titles[lang] + ' — LOTTO PICK';
+
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setLang(btn.dataset.lang);
+        });
+      });
+
+      var params = new URLSearchParams(window.location.search);
+      var queryLang = params.get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
+      if (queryLang === 'en' || queryLang === 'ko') {
+        setLang(queryLang);
+      } else if (saved === 'en' || saved === 'ko') {
+        setLang(saved);
+      } else {
+        setLang('en');
+      }
+    })();
+  </script>
+</body>
+</html>
